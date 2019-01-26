@@ -48,12 +48,12 @@ var orm = {
             cb(result);
         });
     },
-    create: (table, cols, vals, cb) => {
-        let queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${printQuestionMarks(vals.length)})`
-       
-        console.log(queryString);
-
-        connection.query(queryString, vals,  (err, result) => {
+    create: (table, val, cb) => {
+        
+        let queryString = `INSERT INTO ${table} (burger_name) VALUES('${val}')`;
+        console.log("hits this in orm")
+        connection.query(queryString,  (err, result) => {
+            console.log("querystring",queryString)
             if (err) {
                 throw err;
             }
@@ -62,17 +62,11 @@ var orm = {
         });
     },
     // An example of objColVals would be {burger: Double Stack, devoured: true}
-    update:  (table, objColVals, condition, cb) => {
-        let queryString = `UPDATE ${table} SET ${objToSql(objColVals)} WHERE ${condition}`;
-   
-        console.log(queryString);
-        connection.query(queryString,  (err, result) => {
-            if (err) {
-                throw err;
-            }
-
-            cb(result);
-        });
+    update:  (id,table, cb) => {
+        connection.query(`UPDATE ${table} SET devoured=1 WHERE id= ${id}`,function(err,res){
+            if(err) throw err;
+            cb(res);
+        } )
     },
     delete:  (table, condition, cb) => {
         let queryString = `DELETE FROM ${table} WHERE ${condition}`

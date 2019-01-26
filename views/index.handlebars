@@ -16,9 +16,10 @@
             </ul>
         </div>
         <div class="col-md-6">
-            <h2>Eaten Burger List</h2>
 
-            <ul>
+
+            <ul style="float:right">
+                <h2>Eaten Burger List</h2>
                 {{#each burgers}}
                 {{#if devoured}}
                 {{> burgers/burger-block devoured=false}}
@@ -29,15 +30,16 @@
     </div>
 
     <div class="row">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                {{!-- <span class="input-group-text">With textarea</span> --}}
+        <form class="create-form">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <textarea id="burger-input" class="form-control" aria-label="With textarea"></textarea>
             </div>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
-        </div>
 
 
-        <button type="button" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
         <h5>Enter a burger you want to eat click the "Submit" button</h5>
     </div>
