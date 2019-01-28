@@ -1,35 +1,36 @@
 <div class="container">
-    <div class="row">
-        <img id="burger-pic" src="assets/images/burgerpic.png">
-        <h1 id="title">Eat-Da-Burger!</h1>
+    <img class="center-img" id="burger-pic" src="assets/images/burgerpic.png">
+</div>
+<div class="row">
+    <h1 id="title">Eat-Da-Burger!</h1>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Burger List</h2>
+        <ul>
+
+            {{#each burgers}}
+            {{#unless devoured}}
+            {{> burgers/burger-block devoured=true}}
+            {{/unless}}
+            {{/each}}
+        </ul>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Burger List</h2>
+    <div class="col-md-6">
+        <h2>Eaten Burger List</h2>
+        <ul class="eaten-burgers">
 
-            <ul>
-                {{#each burgers}}
-                {{#unless devoured}}
-                {{> burgers/burger-block devoured=true}}
-                {{/unless}}
-                {{/each}}
-            </ul>
-        </div>
-        <div class="col-md-6">
-
-
-            <ul style="float:right">
-                <h2>Eaten Burger List</h2>
-                {{#each burgers}}
-                {{#if devoured}}
-                {{> burgers/burger-block devoured=false}}
-                {{/if}}
-                {{/each}}
-            </ul>
-        </div>
+            {{#each burgers}}
+            {{#if devoured}}
+            {{> burgers/burger-block devoured=false}}
+            {{/if}}
+            {{/each}}
+        </ul>
     </div>
-
-    <div class="row">
+</div>
+<div class="row center">
+    <div class="col-md-4 center">
         <form class="create-form">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -38,10 +39,11 @@
             </div>
 
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="submit-button" type="submit" class="btn btn-primary center">Submit</button>
         </form>
-
-        <h5>Enter a burger you want to eat click the "Submit" button</h5>
     </div>
+</div>
+<div class="row center">
+    <p>Enter a burger you want to eat click the "Submit" button</p>
 </div>
 </div>
